@@ -17,7 +17,12 @@
         <result property="productUrl" column="productUrl" jdbcType="VARCHAR" />
     </resultMap>
 
+    <sql id="Basesql">
+        id , productId , productPrice , productName , pictureAdress , productAmount ,crtTime
+        source , auctionRanking , productUrl 
+    </sql>
     <select id="queryByName" resultMap="BaseMap">
-        select * from productinfo
+        select <include refid="Basesql" /> from productinfo where productName like '%' #{name} '%'
+        order by auctionRanking desc
     </select>
 </mapper>
