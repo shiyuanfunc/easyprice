@@ -8,8 +8,11 @@ spring:
     password: mysqlroot
     username: root
     driver-class-name: com.mysql.jdbc.Driver
+
 mybatis:
   configuration:
     call-setters-on-nulls: true
-  mapper-locations: classpath:mapper/*.xml
+  mapper-locations: classpath*:mapper/*.xml
+
+
 

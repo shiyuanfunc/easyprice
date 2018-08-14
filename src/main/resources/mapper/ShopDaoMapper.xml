@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.third.easyprice.dao.ShopDao">
+
+    <!--<resultMap id="BaseMap" type="com.third.easyprice.bean.Shop">
+        <result property="id" column="id" />
+        <result property="productId" column="productId" jdbcType="VARCHAR" />
+        <result property="productPrice" column="productPrice" jdbcType="VARCHAR" />
+        <result property="productName" column="productName" jdbcType="VARCHAR" />
+        <result property="pictureAdress" column="pictureAdress" jdbcType="VARCHAR" />
+        <result property="productAmount" column="productAmount" javaType="VARCHAR" />
+        <result property="crtTime" column="crtTime" jdbcType="TIMESTAMP" />
+
+    </resultMap>-->
+
+    <select id="queryByName">
+        select * from productinfo
+    </select>
+</mapper>
