@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.third.easyprice.dao.ShopDao">
 
-    <!--<resultMap id="BaseMap" type="com.third.easyprice.bean.Shop">
+    <resultMap id="BaseMap" type="com.third.easyprice.bean.Shop">
         <result property="id" column="id" />
         <result property="productId" column="productId" jdbcType="VARCHAR" />
         <result property="productPrice" column="productPrice" jdbcType="VARCHAR" />
@@ -12,10 +12,12 @@
         <result property="pictureAdress" column="pictureAdress" jdbcType="VARCHAR" />
         <result property="productAmount" column="productAmount" javaType="VARCHAR" />
         <result property="crtTime" column="crtTime" jdbcType="TIMESTAMP" />
+        <result property="source" column="source" jdbcType="VARCHAR" />
+        <result property="auctionRanking" column="auctionRanking" jdbcType="VARCHAR" />
+        <result property="productUrl" column="productUrl" jdbcType="VARCHAR" />
+    </resultMap>
 
-    </resultMap>-->
-
-    <select id="queryByName">
+    <select id="queryByName" resultMap="BaseMap">
         select * from productinfo
     </select>
 </mapper>
