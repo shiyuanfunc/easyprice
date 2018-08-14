@@ -1,5 +1,6 @@
 package com.third.easyprice.dao;
 
+import com.third.easyprice.bean.Shop;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -7,5 +8,5 @@ import java.util.List;
 @Mapper
 public interface ShopDao {
 
-    List<Object> queryByName(String shopName);
+    List<Shop> queryByName(String shopName);
 }

@@ -1,6 +1,7 @@
 package com.third.easyprice.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.third.easyprice.bean.Shop;
 import com.third.easyprice.dao.ShopDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +21,7 @@ public class TestController {
     public JSONObject test(){
 
         String name = "1" ;
-        List<Object> objects = shopDao.queryByName(name);
+        List<Shop> objects = shopDao.queryByName(name);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("data", objects) ;
         jsonObject.put("msg" , "success") ;

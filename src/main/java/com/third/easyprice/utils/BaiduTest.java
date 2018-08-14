@@ -53,7 +53,6 @@ public class BaiduTest {
         // 注意这里仅为了简化编码每一次请求都去获取access_token，线上环境access_token有过期时间， 客户端可自行缓存，过期后重新获取。
         //String accessToken = accessKey;
         String result = HttpUtil.post(url, accessToken, param);
-        System.out.println("------------"+result);
         return result;
         } catch (Exception e) {
             return null ;
@@ -61,7 +60,7 @@ public class BaiduTest {
 
     }
 
-    private void convert(String result) {
+    public static List<Map<String , Object>> convert(String result) {
         Map<String, Object> jsonMap = (Map<String, Object>) JSONObject.fromObject( result );
         String results = jsonMap.get( "result" ).toString();
         JSONArray jsonArray = JSONArray.fromObject( results );
@@ -73,11 +72,11 @@ public class BaiduTest {
                 String key = (String) iter.next();
                 String value = jsonObject.get( key ).toString();
                 map.put( key, value );
-                System.out.println( "!!!!!!!!!" + map );
             }
             mapListJson.add( map );
-            System.out.println( "------------" + mapListJson );
         }
+        System.out.println("--"+mapListJson);
+        return mapListJson ;
     }
 
 
