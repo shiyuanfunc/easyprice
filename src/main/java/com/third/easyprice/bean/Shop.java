@@ -14,6 +14,8 @@ public class Shop {
     private String source ;
     private String auctionRanking ;
     private String productUrl ;
+    private String store ;
+    private String productDesc ;
 
     public long getId() {
         return id;
@@ -95,6 +97,21 @@ public class Shop {
         this.productUrl = productUrl;
     }
 
+    public String getStore() {
+        return store;
+    }
+
+    public void setStore(String store) {
+        this.store = store;
+    }
+
+    public String getProductDesc() {
+        return productDesc;
+    }
+
+    public void setProductDesc(String productDesc) {
+        this.productDesc = productDesc;
+    }
 
     @Override
     public String toString() {
@@ -109,6 +126,8 @@ public class Shop {
                 ", source='" + source + '\'' +
                 ", auctionRanking='" + auctionRanking + '\'' +
                 ", productUrl='" + productUrl + '\'' +
+                ", store='" + store + '\'' +
+                ", productDesc='" + productDesc + '\'' +
                 '}';
     }
 }

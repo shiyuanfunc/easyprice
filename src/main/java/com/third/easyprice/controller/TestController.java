@@ -20,7 +20,8 @@ public class TestController {
     @RequestMapping(value = "/test" , method = RequestMethod.GET)
     public JSONObject test(){
 
-        String name = "1" ;
+
+        String name = "小米" ;
         List<Shop> objects = shopDao.queryByName(name);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("data", objects) ;

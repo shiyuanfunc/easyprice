@@ -4,8 +4,9 @@ import com.alibaba.fastjson.JSONObject;
 import com.third.easyprice.bean.Shop;
 import com.third.easyprice.service.ShopService;
 import com.third.easyprice.utils.BaiduTest;
-import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -41,11 +42,35 @@ public class ShopController {
         String detect = BaiduTest.detect(tempFile);
         List<Map<String, Object>> convert = BaiduTest.convert(detect);
 
-        List<Shop> result = shopService.queryByName(convert);
+        String key = UUID.randomUUID().toString().replace("-","");
+        List<Shop> result = shopService.queryByName(convert , key);
         jsonObject.put("data" , result);
+
         return jsonObject ;
     }
 
 
+    /**
+     *
+     * @param key  用户数据标识符
+     * @param type  用户分类 类型
+     * @return
+     */
+    @RequestMapping(value = "/order" , method = RequestMethod.GET)
+    public JSONObject orderResult(String key , String type ){
+        JSONObject jsonObject = new JSONObject();
+        if (StringUtils.isBlank(key)){
+            jsonObject.put("msg" , "服务器错误");
+            jsonObject.put("data" , null);
+            jsonObject.put("code" , "403");
+            return jsonObject ;
+        }
+
+        List<Shop> shops = shopService.orderList(key, type);
+        jsonObject.put("msg" , "请求正常");
+        jsonObject.put("data",shops);
+        jsonObject.put("code" ,"200");
+        return jsonObject ;
+    }
 
 }

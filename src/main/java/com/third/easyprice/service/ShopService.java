@@ -7,5 +7,7 @@ import java.util.Map;
 
 public interface ShopService {
 
-    List<Shop> queryByName(List<Map<String , Object>> json);
+    List<Shop> queryByName(List<Map<String , Object>> json , String key);
+
+    List<Shop> orderList(String key , String type) ;
 }

@@ -15,11 +15,13 @@
         <result property="source" column="source" jdbcType="VARCHAR" />
         <result property="auctionRanking" column="auctionRanking" jdbcType="VARCHAR" />
         <result property="productUrl" column="productUrl" jdbcType="VARCHAR" />
+        <result property="store" column="store" jdbcType="VARCHAR" />
+        <result property="productDesc" column="productDesc" jdbcType="VARCHAR" />
     </resultMap>
 
     <sql id="Basesql">
-        id , productId , productPrice , productName , pictureAdress , productAmount ,crtTime
-        source , auctionRanking , productUrl 
+        id , productId , productPrice , productName , pictureAdress , productAmount ,crtTime ,
+        source , auctionRanking , productUrl ,store , productDesc
     </sql>
     <select id="queryByName" resultMap="BaseMap">
         select <include refid="Basesql" /> from productinfo where productName like '%' #{name} '%'
