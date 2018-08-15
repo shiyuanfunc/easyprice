@@ -69,7 +69,7 @@ public class ShopServiceImpl implements ShopService {
 
         Map<String , String > map = new HashMap<>();
         map.put("ids", ids);
-        // 0.天猫  1.京东  2.苏宁
+        // 0.天猫  1.京东  2.苏宁 4.升序 5.降序
         map.put("key" , type);
         List<Shop> list = shopDao.orderList(map);
         return list ;
