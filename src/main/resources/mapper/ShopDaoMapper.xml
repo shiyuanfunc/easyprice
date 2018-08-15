@@ -7,7 +7,7 @@
     <resultMap id="BaseMap" type="com.third.easyprice.bean.Shop">
         <result property="id" column="id"/>
         <result property="productId" column="productId" jdbcType="VARCHAR" />
-        <result property="productPrice" column="productPrice" jdbcType="VARCHAR" />
+        <result property="productPrice" column="productPrice" jdbcType="DOUBLE" />
         <result property="productName" column="productName" jdbcType="VARCHAR" />
         <result property="pictureAdress" column="pictureAdress" jdbcType="VARCHAR" />
         <result property="productAmount" column="productAmount" jdbcType="VARCHAR" />
@@ -25,6 +25,26 @@
     </sql>
     <select id="queryByName" resultMap="BaseMap">
         select <include refid="Basesql" /> from productinfo where productName like '%' #{name} '%'
-        order by auctionRanking desc
+        order by productPrice desc limit 20
+    </select>
+    
+    <select id="orderList" resultMap="BaseMap">
+        select <include refid="Basesql" /> from productinfo where productId in (${ids})
+
+        <choose>
+            <when test="key == 1" >
+                order by store desc , productPrice asc
+            </when>
+            <when test="key == 2">
+                order by store desc , productPrice desc
+            </when>
+            <when test="key == 3">
+                order by store asc , productPrice asc
+            </when>
+            <otherwise>
+                order by store desc , productPrice asc
+            </otherwise>
+        </choose>
+
     </select>
 </mapper>

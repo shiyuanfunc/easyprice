@@ -1,15 +1,14 @@
 package com.third.easyprice.service.impl;
 
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import com.third.easyprice.bean.Shop;
 import com.third.easyprice.dao.ShopDao;
 import com.third.easyprice.service.ShopService;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import redis.clients.jedis.Jedis;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -36,42 +35,45 @@ public class ShopServiceImpl implements ShopService {
                 resultList.addAll(result);
             }
         }
+        StringBuilder sb = new StringBuilder();
+
+        for (Shop shop : resultList){
+            sb.append("'");
+            sb.append(shop.getProductId());
+            sb.append("'");
+            sb.append(",");
+        }
+        String ids = sb.toString();
+        if (!StringUtils.isBlank(ids)){
+            ids = ids.substring(0,ids.length()-1);
+        }
 
         Jedis jedis = new Jedis("111.231.232.212" , 6379);
         jedis.auth("redisroot");
-        jedis.set(key , resultList.toString());
+        jedis.set("123456789" , ids);
 
         return resultList;
     }
 
     /**
      *  根据排列要求排序
-     * @param key
+     * @param
      * @return
      */
     @Override
-    public List<Shop> orderList(String key , String type) {
+    public List<Shop> orderList(String type) {
 
         Jedis jedis = new Jedis("111.231.232.212" , 6379);
         jedis.auth("redisroot");
-        String resultStr = jedis.get(key);
+        String ids = jedis.get("123456789");
 
-        JSONArray array = JSONObject.parseArray(resultStr);
-        List<Shop> list1 = new ArrayList<>();
-        List<Shop> list2 = new ArrayList<>();
-        for (Object o : array){
-            Shop shop = (Shop)o;
-            if (shop.getStore().equals(type)){
-                list1.add(shop);
-            }else{
-                list2.add(shop);
-            }
-        }
-        //对list数据进行排序
-        List<Shop> resultList = new LinkedList<>();
-        resultList.addAll(list1);
-        resultList.addAll(list2);
-
-        return resultList;
+        String keyword = "" ;
+        Map<String , String > map = new HashMap<>();
+        map.put("ids", ids);
+        map.put("key" , type);
+        List<Shop> list = shopDao.orderList(map);
+        System.out.println("--------"+ids+"  type"+type);
+        System.out.println(list.toString());
+        return list ;
     }
 }

@@ -9,5 +9,5 @@ public interface ShopService {
 
     List<Shop> queryByName(List<Map<String , Object>> json , String key);
 
-    List<Shop> orderList(String key , String type) ;
+    List<Shop> orderList( String type) ;
 }

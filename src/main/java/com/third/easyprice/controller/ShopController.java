@@ -6,7 +6,6 @@ import com.third.easyprice.service.ShopService;
 import com.third.easyprice.utils.BaiduTest;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -45,7 +44,7 @@ public class ShopController {
         String key = UUID.randomUUID().toString().replace("-","");
         List<Shop> result = shopService.queryByName(convert , key);
         jsonObject.put("data" , result);
-
+        jsonObject.put("key" , key);
         return jsonObject ;
     }
 
@@ -57,16 +56,16 @@ public class ShopController {
      * @return
      */
     @RequestMapping(value = "/order" , method = RequestMethod.GET)
-    public JSONObject orderResult(String key , String type ){
+    public JSONObject orderResult( String type ){
         JSONObject jsonObject = new JSONObject();
-        if (StringUtils.isBlank(key)){
+        if (StringUtils.isBlank(type)){
             jsonObject.put("msg" , "服务器错误");
             jsonObject.put("data" , null);
             jsonObject.put("code" , "403");
             return jsonObject ;
         }
 
-        List<Shop> shops = shopService.orderList(key, type);
+        List<Shop> shops = shopService.orderList(type);
         jsonObject.put("msg" , "请求正常");
         jsonObject.put("data",shops);
         jsonObject.put("code" ,"200");

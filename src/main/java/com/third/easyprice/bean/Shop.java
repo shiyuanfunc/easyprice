@@ -6,7 +6,7 @@ public class Shop {
 
     private long id ;
     private String productId ;
-    private String productPrice ;
+    private double productPrice ;
     private String productName ;
     private String pictureAdress ;
     private String productAmount  ;
@@ -33,11 +33,11 @@ public class Shop {
         this.productId = productId;
     }
 
-    public String getProductPrice() {
+    public Double getProductPrice() {
         return productPrice;
     }
 
-    public void setProductPrice(String productPrice) {
+    public void setProductPrice(Double productPrice) {
         this.productPrice = productPrice;
     }
 
