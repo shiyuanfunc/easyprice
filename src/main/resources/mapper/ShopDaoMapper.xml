@@ -29,11 +29,13 @@
     </select>
     
     <select id="orderList" resultMap="BaseMap">
-        select <include refid="Basesql" /> from productinfo where productId in (${ids})
+        select <include refid="Basesql" /> from productinfo
+        where productId in (${ids}) and store = #{key} order by productPrice asc
 
+        <!-- /*where productId in (${ids})*/
         <choose>
             <when test="key == 1" >
-                order by store desc , productPrice asc
+                where store = #{key} order by productPrice asc
             </when>
             <when test="key == 2">
                 order by store desc , productPrice desc
@@ -45,6 +47,6 @@
                 order by store desc , productPrice asc
             </otherwise>
         </choose>
-
+        -->
     </select>
 </mapper>

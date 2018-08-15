@@ -67,13 +67,11 @@ public class ShopServiceImpl implements ShopService {
         jedis.auth("redisroot");
         String ids = jedis.get("123456789");
 
-        String keyword = "" ;
         Map<String , String > map = new HashMap<>();
         map.put("ids", ids);
+        // 0.天猫  1.京东  2.苏宁
         map.put("key" , type);
         List<Shop> list = shopDao.orderList(map);
-        System.out.println("--------"+ids+"  type"+type);
-        System.out.println(list.toString());
         return list ;
     }
 }

@@ -51,7 +51,7 @@ public class ShopController {
 
     /**
      *
-     * @param key  用户数据标识符
+     * @param
      * @param type  用户分类 类型
      * @return
      */
