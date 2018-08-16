@@ -25,7 +25,7 @@
     </sql>
     <select id="queryByName" resultMap="BaseMap">
         select <include refid="Basesql" /> from productinfo where productName like '%' #{name} '%'
-        order by productPrice asc limit 20
+        order by productPrice asc limit 50
     </select>
     
     <select id="orderList" resultMap="BaseMap">
