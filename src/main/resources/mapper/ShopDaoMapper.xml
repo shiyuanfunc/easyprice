@@ -32,7 +32,7 @@
         select <include refid="Basesql" /> from productinfo
         where productId in (${ids})
         <choose>
-            <when test="key == 1 || key == 2 || key == 3" >
+            <when test="key == 1 || key == 2 || key == 0" >
                 and store = #{key} order by productPrice asc
             </when>
             <when test="key == 4">
