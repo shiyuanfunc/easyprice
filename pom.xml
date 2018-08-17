@@ -61,6 +61,8 @@
         <dependency>
             <groupId>com.song</groupId>
             <artifactId>baidu</artifactId>
+            <version>1.1.1</version>
+            <scope>system</scope>
             <systemPath>${basedir}/lib/json-20160810.jar</systemPath>
         </dependency>
 

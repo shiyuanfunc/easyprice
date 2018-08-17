@@ -4,6 +4,8 @@ import com.third.easyprice.bean.Shop;
 import com.third.easyprice.dao.ShopDao;
 import com.third.easyprice.service.ShopService;
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import redis.clients.jedis.Jedis;
@@ -15,6 +17,8 @@ import java.util.Map;
 
 @Service
 public class ShopServiceImpl implements ShopService {
+
+    private static Logger logger = LoggerFactory.getLogger(ShopServiceImpl.class) ;
 
     @Autowired
     private ShopDao shopDao ;
