@@ -9,4 +9,7 @@ public class EasypriceApplication {
     public static void main(String[] args) {
         SpringApplication.run(EasypriceApplication.class, args);
     }
+	public void yesterday(){
+		
+	}
 }
